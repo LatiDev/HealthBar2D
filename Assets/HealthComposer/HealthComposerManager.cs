@@ -55,6 +55,6 @@ public class HealthComposerManager : MonoBehaviour
         return HCG;
     }
 
-    private void HeartValueChanged(int v) { HeartGroup.SetHealthComposerGroupTo(v); }
-    private void ArmorValueChanged(int v) { ArmorGroup.SetHealthComposerGroupTo(v); }
+    private void HeartValueChanged(float v) { HeartGroup.SetHealthComposerGroupTo(v); }
+    private void ArmorValueChanged(float v) { ArmorGroup.SetHealthComposerGroupTo(v); }
 }

@@ -317,6 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 794752355}
+  - component: {fileID: 794752356}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -340,6 +341,21 @@ Transform:
   m_Father: {fileID: 934546877}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &794752356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794752354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee53a70d60a5514f991439d6f797980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 743565652}
+  Armor: {fileID: 1958536728}
+  ArmorReduction: {fileID: 1958536730}
 --- !u!1 &812859860
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +594,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1958536727}
   - component: {fileID: 1958536728}
+  - component: {fileID: 1958536729}
+  - component: {fileID: 1958536730}
   m_Layer: 0
   m_Name: Armor
   m_TagString: Untagged
@@ -613,3 +631,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Value: 100
   _MaxValue: 100
+--- !u!114 &1958536729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958536726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64c052f381fd934b93fa478ee8ce454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Union:
+    _Value: 0.5
+--- !u!114 &1958536730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958536726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e7a462408b8344a9e27151d0ff1042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reduction: {fileID: 1958536729}

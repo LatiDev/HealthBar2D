@@ -7,38 +7,34 @@ public class HealthComposerUIGroup : MonoBehaviour
     private void ResizeRect(float w)
     {
         this.GetComponent<RectTransform>().SetWidth(w);
-
-        print(w);
     }
     
     public IEnumerable<GameObject> AddItems(GameObject Prefab, ClampValue Base, HealthComposerUIData Data)
     {
-        int HealthComposerAmount = Base.MaxValue / Data.Value;
+        float HealthComposerAmount = Base.MaxValue / Data.Value;
 
         ResizeRect(HealthComposerAmount * (100+10));
 
         for (int i = 0; i < HealthComposerAmount; i++)
             yield return Instantiate(Prefab, this.transform);
     }
-    public void SetHealthComposerGroupTo(int hv)
+    public void SetHealthComposerGroupTo(float hv)
     {
         ResetBar();
 
-        int Chv = hv;
+        float Chv = hv;
         foreach (Transform h in this.transform)
         {
             HealthComposerUI H_ = h.GetComponent<HealthComposerUI>();
 
-            int HearthValue = H_.Data.Value;
-
-            if (Chv >= HearthValue)
-            {
-                Chv -= HearthValue;
+            int HealthComposerValue = (int) H_.Value.Value;
+            
+            if (Chv >= HealthComposerValue) 
+            { 
+                Chv -= HealthComposerValue; 
                 H_.CurrentState = HealthComposerUI.State.On;
             }
-
-            
-            if (Chv <= 0) break;
+            else if (Chv <= 0) break;
         }
     }
     public void ResetBar()

@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class ClampValue : MonoBehaviour
 {
-    public event UnityAction<int> OnValueChanged;
+    public event UnityAction<float> OnValueChanged;
 
 
-    [SerializeField] private int _Value = 100;
-    [HideInInspector] public int Value 
+    [SerializeField] private float _Value = 100;
+    [HideInInspector] public float Value 
     { 
         get 
         { 
@@ -21,8 +21,8 @@ public class ClampValue : MonoBehaviour
             OnValueChanged(_Value);
         }
     }
-    [SerializeField] private int _MaxValue = 100;
-    [HideInInspector] public int MaxValue
+    [SerializeField] private float _MaxValue = 100;
+    [HideInInspector] public float MaxValue
     {
         get
         {
@@ -33,8 +33,15 @@ public class ClampValue : MonoBehaviour
             _MaxValue = value;
         }
     }
+
+    public void ResetValueTo(float v)
+    {
+        this._Value = v;
+        this._MaxValue = v;
+    }
     public float Proportion()
     {
+        print($"{_MaxValue}, {_Value}");
         return _MaxValue / _Value;
     }
 }

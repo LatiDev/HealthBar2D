@@ -10,6 +10,7 @@ public class HealthComposerUI : MonoBehaviour
     public HealthComposerUIData Data;
     public Image Image;
 
+
     public enum State
     {
         On,
@@ -27,6 +28,11 @@ public class HealthComposerUI : MonoBehaviour
         {
             this.SetState(value);
         }
+    }
+
+    private void Awake()
+    {
+        this.Value.ResetValueTo(Data.Value);
     }
 
     private void SetState(State s)
