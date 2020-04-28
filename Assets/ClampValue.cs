@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClampValue : MonoBehaviour
 {
+    public event UnityAction<int> OnValueChanged;
+
+
     [SerializeField] private int _Value = 100;
     [HideInInspector] public int Value 
     { 
@@ -13,7 +17,8 @@ public class ClampValue : MonoBehaviour
         } 
         set 
         { 
-            _Value = Mathf.Clamp(value, 0, _MaxValue); 
+            _Value = Mathf.Clamp(value, 0, _MaxValue);
+            OnValueChanged(_Value);
         }
     }
     [SerializeField] private int _MaxValue = 100;

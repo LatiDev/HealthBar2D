@@ -63,14 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Armor.cs" />
     <Compile Include="Assets\ClampValue.cs" />
-    <Compile Include="Assets\Health.cs" />
-    <Compile Include="Assets\HealthBar.cs" />
-    <Compile Include="Assets\HealthComposerUI.cs" />
-    <Compile Include="Assets\HealthComposerUIData.cs" />
-    <Compile Include="Assets\Heart\C#\Heart.cs" />
-    <Compile Include="Assets\Heart\C#\HeartData.cs" />
+    <Compile Include="Assets\HealthComposer\HealthComposerManager.cs" />
+    <Compile Include="Assets\HealthComposer\HealthComposerUI.cs" />
+    <Compile Include="Assets\HealthComposer\HealthComposerUIData.cs" />
+    <Compile Include="Assets\HealthComposer\HealthComposerUIGroup.cs" />
+    <Compile Include="Assets\RectTransformExtensions.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Benjamin/Documents/Unity Engine/HealthBar2D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
