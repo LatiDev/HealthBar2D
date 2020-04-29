@@ -1,60 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthComposerManager : MonoBehaviour
 {
-    [Header("Heart")]
-    [SerializeField] private ClampValue Heart;
-    [SerializeField] private GameObject HeartPrefab;
-    [SerializeField] private HealthComposerUIData HeartData;
-
-    [Header("Armor")]
-    [SerializeField] private ClampValue Armor;
-    [SerializeField] private GameObject ArmorPrefab;
-    [SerializeField] private HealthComposerUIData ArmorData;
+    [SerializeField] private DamageManager Dm;
+    
+    [Header("Player Data")]
+    [SerializeField] private ActorHealthData ActorHealth;
 
     [Header("Health Bar")]
     [SerializeField] private Transform HealthBarParent;
     [SerializeField] private GameObject HealthComposerGroupPrefab;
 
-    private HealthComposerUIGroup HeartGroup;
-    private HealthComposerUIGroup ArmorGroup;
+    private HealthComposerUIGroup HealthBar;
+    private HealthComposerUIGroup ArmorBar;
 
 
-    private void Awake()
-    {
-        Heart.OnValueChanged += HeartValueChanged;
-        Armor.OnValueChanged += ArmorValueChanged;
-    }
     private void Start()
     {
-        HeartGroup = CreateHeathComposerGroup(HeartPrefab, Heart, HeartData);
-        ArmorGroup = CreateHeathComposerGroup(ArmorPrefab, Armor, ArmorData);
+        CreateActorHealthUI(ActorHealth);
     }
-    private void Update()
+    private void CreateActorHealthUI(ActorHealthData Ahd)
     {
-        HeartValueChanged(Heart.Value);
-        ArmorValueChanged(Armor.Value);
+        HealthBar = CreateHeathComposerGroup(Ahd.Heart, Ahd.HeartNumber);
+        Dm.OnHeartTakeDamage += HealthBar.SetHealthComposerGroupTo;
+
+        ArmorBar = CreateHeathComposerGroup(Ahd.Armor, Ahd.ArmorNumber);
+        Dm.OnArmorTakeDamage += ArmorBar.SetHealthComposerGroupTo;
     }
     private HealthComposerUIGroup NewHealthComposerGroup()
     {
         GameObject o = Instantiate(HealthComposerGroupPrefab, HealthBarParent);
         return o.GetComponent<HealthComposerUIGroup>();
     }
-    private HealthComposerUIGroup CreateHeathComposerGroup(GameObject Prefab, ClampValue Value, HealthComposerUIData Data)
+    private HealthComposerUIGroup CreateHeathComposerGroup(HealthComposerData HealthData, uint HealthComposerAmount)
     {
         HealthComposerUIGroup HCG = NewHealthComposerGroup();
+        HCG.AddItems(HealthData, HealthComposerAmount);
 
-        foreach (GameObject HealthComposerInstance in HCG.AddItems(Prefab, Value, Data))
-        {
-            HealthComposerUI h = HealthComposerInstance.GetComponent<HealthComposerUI>();
-            h.Data = Data;
-        }
-
+        //OnCreatedHealthComposerGroup?.Invoke(HCG);
         return HCG;
     }
-
-    private void HeartValueChanged(float v) { HeartGroup.SetHealthComposerGroupTo(v); }
-    private void ArmorValueChanged(float v) { ArmorGroup.SetHealthComposerGroupTo(v); }
 }

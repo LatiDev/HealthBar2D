@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3787659400366450140}
   - component: {fileID: 3787659400366450143}
   - component: {fileID: 3787659400366450142}
-  - component: {fileID: -4736169802934118019}
   - component: {fileID: 6451756686381265465}
   m_Layer: 0
   m_Name: HealthComposerUIPrefab
@@ -75,20 +74,6 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-4736169802934118019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3787659400366450137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce75468670f70643b46a5e0e634b7b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Value: 5
-  _MaxValue: 5
 --- !u!114 &6451756686381265465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf67957446eeeea48bb85f69edbba4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: {fileID: -4736169802934118019}
+  Value: 0
   Data: {fileID: 0}
   Image: {fileID: 3787659400366450142}

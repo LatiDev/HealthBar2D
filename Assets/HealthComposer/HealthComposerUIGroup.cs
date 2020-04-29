@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthComposerUIGroup : MonoBehaviour
 {
@@ -9,18 +10,39 @@ public class HealthComposerUIGroup : MonoBehaviour
         this.GetComponent<RectTransform>().SetWidth(w);
     }
     
-    public IEnumerable<GameObject> AddItems(GameObject Prefab, ClampValue Base, HealthComposerUIData Data)
+    public IEnumerable<GameObject> AddItems(GameObject Prefab, uint HealthComposerAmount)
     {
-        float HealthComposerAmount = Base.MaxValue / Data.Value;
-
         ResizeRect(HealthComposerAmount * (100+10));
 
         for (int i = 0; i < HealthComposerAmount; i++)
             yield return Instantiate(Prefab, this.transform);
     }
-    public void SetHealthComposerGroupTo(float hv)
+    public void AddItems(HealthComposerData HealthData, uint HealthComposerAmount)
+    {
+        foreach (GameObject HealthComposerUIInstance in this.AddItems(HealthData.Prefab, HealthComposerAmount))
+        {
+            HealthComposerUI Hcuii = HealthComposerUIInstance.GetComponent<HealthComposerUI>();
+            Hcuii.Data = HealthData.Data;            
+        }
+           
+    }
+    public void SetHealthComposerGroupTo(int HealthComposerValue)
     {
         ResetBar();
+
+        int HCA_Round = (int)HealthComposerValue;
+
+        for (int i = 0; i < HCA_Round; i++)
+        {
+            Transform H_ = this.transform.GetChild(i);
+            HealthComposerUI Hc = H_.GetComponent<HealthComposerUI>();
+
+            Hc.CurrentState = HealthComposerUI.State.On;
+        }
+
+
+
+        /*
 
         float Chv = hv;
         foreach (Transform h in this.transform)
@@ -34,8 +56,16 @@ public class HealthComposerUIGroup : MonoBehaviour
                 Chv -= HealthComposerValue; 
                 H_.CurrentState = HealthComposerUI.State.On;
             }
-            else if (Chv <= 0) break;
+            else if (Chv < HealthComposerValue)
+            {
+                H_.CurrentState = HealthComposerUI.State.On;
+                h.GetComponent<Image>().fillAmount = H_.Data.Value / Cv;
+            }
+            
+            if (Chv < 0) break;
         }
+
+        */
     }
     public void ResetBar()
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(ClampValue), typeof(Image))]
+[RequireComponent(typeof(Image))]
 public class HealthComposerUI : MonoBehaviour
 {
-    public ClampValue Value;
+    public uint Value;
     public HealthComposerUIData Data;
     public Image Image;
 
@@ -30,9 +30,9 @@ public class HealthComposerUI : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        this.Value.ResetValueTo(Data.Value);
+        this.CurrentState = _CurrentState;
     }
 
     private void SetState(State s)
