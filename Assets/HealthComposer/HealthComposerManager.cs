@@ -25,10 +25,10 @@ public class HealthComposerManager : MonoBehaviour
     private void CreateActorHealthUI(ActorHealthData Ahd)
     {
         HealthBar = CreateHeathComposerGroup(Ahd.Heart, Ahd.HeartNumber);
-        Dm.OnHeartTakeDamage += HealthBar.SetHealthComposerGroupTo;
+        Dm.OnHeartTakeDamage += HealthBar.Set;
 
         ArmorBar = CreateHeathComposerGroup(Ahd.Armor, Ahd.ArmorNumber);
-        Dm.OnArmorTakeDamage += ArmorBar.SetHealthComposerGroupTo;
+        Dm.OnArmorTakeDamage += ArmorBar.Set;
     }
     private HealthComposerUIGroup NewHealthComposerGroup()
     {

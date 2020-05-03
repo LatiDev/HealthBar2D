@@ -26,7 +26,7 @@ public class HealthComposerUIGroup : MonoBehaviour
         }
            
     }
-    public void SetHealthComposerGroupTo(int HealthComposerValue)
+    public void Set(int HealthComposerValue)
     {
         ResetBar();
 
@@ -39,33 +39,6 @@ public class HealthComposerUIGroup : MonoBehaviour
 
             Hc.CurrentState = HealthComposerUI.State.On;
         }
-
-
-
-        /*
-
-        float Chv = hv;
-        foreach (Transform h in this.transform)
-        {
-            HealthComposerUI H_ = h.GetComponent<HealthComposerUI>();
-
-            int HealthComposerValue = (int) H_.Value.Value;
-            
-            if (Chv >= HealthComposerValue) 
-            { 
-                Chv -= HealthComposerValue; 
-                H_.CurrentState = HealthComposerUI.State.On;
-            }
-            else if (Chv < HealthComposerValue)
-            {
-                H_.CurrentState = HealthComposerUI.State.On;
-                h.GetComponent<Image>().fillAmount = H_.Data.Value / Cv;
-            }
-            
-            if (Chv < 0) break;
-        }
-
-        */
     }
     public void ResetBar()
     {
